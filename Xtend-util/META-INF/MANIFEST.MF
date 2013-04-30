@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Xtend-util
+Bundle-SymbolicName: Xtend-util
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.xtend.lib,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib
+Bundle-Vendor: DSLConsultancy.com
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: nl.dslmeinte.xtend.annotations
+
