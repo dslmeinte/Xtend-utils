@@ -59,13 +59,15 @@ class ParametrizedInjectionProcessor extends AbstractClassProcessor {
 		realInitialisations.forEach[visibility = Visibility::PROTECTED]
 
 		if( declaredFields.filter[annotations.exists[ annotationTypeDeclaration.qualifiedName == 'com.google.inject.Inject' ]].empty ) {
-			addError('''class «simpleName» has no @Inject-ed fields ==> use @Data & @Property instead of @ParametrizedInjected & @ClassParameter''')
+			addWarning('''class «simpleName» has no @Inject-ed fields ==> use @Data & @Property instead of @ParametrizedInjected & @ClassParameter''')
 		}
 	}
 
 	def private <T extends MutableAnnotationTarget> filterAnnotatedWith(Iterable<T> targets, Class<?> annotationJavaType) {
 		targets.filter[annotations.exists[ annotationTypeDeclaration.qualifiedName == annotationJavaType.name ]]		// TODO  find more elegant way to this filtering
 	}
+
+	// TODO  generate a SingleMethodObject builder class for passing the required data into the constructor
 
 }
 
