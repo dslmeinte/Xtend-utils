@@ -59,7 +59,7 @@ class ParametrizedInjectionProcessor extends AbstractClassProcessor {
 		realInitialisations.forEach[visibility = Visibility::PROTECTED]
 
 		if( declaredFields.filter[annotations.exists[ annotationTypeDeclaration.qualifiedName == 'com.google.inject.Inject' ]].empty ) {
-			addWarning('''class «simpleName» has no @Inject-ed fields ==> use @Data & @Property instead of @ParametrizedInjected & @ClassParameter''')
+			addWarning('''class «simpleName» has no @Inject-ed fields: you could use @Data & @Property instead of @ParametrizedInjected & @ClassParameter''')
 		}
 	}
 
