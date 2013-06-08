@@ -165,6 +165,7 @@ abstract class ParametrizedMethodMemoizer extends MethodMemoizer {
 
 
 class SingleParameterMethodMemoizer extends ParametrizedMethodMemoizer {
+
 	new(MutableMethodDeclaration method, TransformationContext context, int index) {
 		super(method, context, index)
 	}
@@ -187,6 +188,7 @@ class SingleParameterMethodMemoizer extends ParametrizedMethodMemoizer {
 
 
 class MultipleParameterMethodMemoizer extends ParametrizedMethodMemoizer {
+
 	new(MutableMethodDeclaration method, TransformationContext context, int index) {
 		super(method, context, index)
 	}
@@ -205,6 +207,7 @@ class MultipleParameterMethodMemoizer extends ParametrizedMethodMemoizer {
 	override protected cacheKeyType() {
 		typeof(CacheKey).newTypeReference
 	}
+
 }
 
 
