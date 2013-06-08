@@ -24,21 +24,23 @@ import static extension de.oehme.xtend.contrib.base.ASTExtensions.*
  * </ul>
  */
 @Active(typeof(MemoizeProcessor))
-annotation Cached {
-}
+annotation Cached {}
+
 
 class MemoizeProcessor implements TransformationParticipant<MutableMethodDeclaration> {
+
 	override doTransform(List<? extends MutableMethodDeclaration> methods, extension TransformationContext context) {
-		for (i : 0 ..< methods.size) {
-			val it = methods.get(i)
+		methods.forEach[ it, i |
 			switch (parameters.size) {
-				case 0: new ParamterlessMethodMemoizer(it, context, i).generate
+				case 0: new ParameterlessMethodMemoizer(it, context, i).generate
 				case 1: new SingleParameterMethodMemoizer(it, context, i).generate
 				default: new MultipleParameterMethodMemoizer(it, context, i).generate
 			}
-		}
+		]
 	}
+
 }
+
 
 abstract class MethodMemoizer {
 
@@ -75,12 +77,14 @@ abstract class MethodMemoizer {
 	def protected TypeReference cacheFieldType()
 
 	def protected CharSequence cacheFieldInit(CompilationContext context)
+
 }
+
 
 /**
  * Uses double null check synchronization for multithreaded correctness and performance
  */
-class ParamterlessMethodMemoizer extends MethodMemoizer {
+class ParameterlessMethodMemoizer extends MethodMemoizer {
 
 	new(MutableMethodDeclaration method, TransformationContext context, int index) {
 		super(method, context, index)
@@ -106,12 +110,14 @@ class ParamterlessMethodMemoizer extends MethodMemoizer {
 	def lock() {
 		if (method.static) '''«method.declaringType.simpleName».class''' else "this"
 	}
+
 }
 
 /**
  * Uses Guava's LoadingCache to store the return value for each combination of parameters
  */
 abstract class ParametrizedMethodMemoizer extends MethodMemoizer {
+
 	new(MutableMethodDeclaration method, TransformationContext context, int index) {
 		super(method, context, index)
 	}
@@ -154,7 +160,9 @@ abstract class ParametrizedMethodMemoizer extends MethodMemoizer {
 	def protected CharSequence parametersToCacheKey(CompilationContext context)
 
 	def protected CharSequence cacheKeyToParameters(CompilationContext context)
+
 }
+
 
 class SingleParameterMethodMemoizer extends ParametrizedMethodMemoizer {
 	new(MutableMethodDeclaration method, TransformationContext context, int index) {
@@ -174,7 +182,9 @@ class SingleParameterMethodMemoizer extends ParametrizedMethodMemoizer {
 	def private parameter() {
 		method.parameters.head
 	}
+
 }
+
 
 class MultipleParameterMethodMemoizer extends ParametrizedMethodMemoizer {
 	new(MutableMethodDeclaration method, TransformationContext context, int index) {
@@ -197,11 +207,13 @@ class MultipleParameterMethodMemoizer extends ParametrizedMethodMemoizer {
 	}
 }
 
+
 /**
  * This class is an implementation detail and not fit for general use.
  * It foregoes immutability for pure performance
  */
 class CacheKey {
+
 	val Object[] parameters
 
 	new(Object... parameters) {
@@ -222,4 +234,6 @@ class CacheKey {
 	override hashCode() {
 		Arrays::hashCode(parameters)
 	}
+
 }
+
