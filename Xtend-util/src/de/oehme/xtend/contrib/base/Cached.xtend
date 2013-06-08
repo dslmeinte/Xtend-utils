@@ -134,7 +134,7 @@ abstract class ParametrizedMethodMemoizer extends MethodMemoizer {
 
 	override protected final cacheFieldType() {
 		newTypeReference(
-			"com.google.common.cache.LoadingCache",
+			"com.google.common.cache.Cache",	// to make compatible with Guava v11
 			cacheKeyType,
 			method.returnType
 		)
