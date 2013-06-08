@@ -8,5 +8,6 @@ Require-Bundle: org.eclipse.xtend.lib,
  org.eclipse.xtext.xbase.lib
 Bundle-Vendor: DSLConsultancy.com
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: nl.dslmeinte.xtend.annotations
+Export-Package: de.oehme.xtend.contrib.base,
+ nl.dslmeinte.xtend.annotations
 
