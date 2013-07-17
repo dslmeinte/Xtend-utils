@@ -21,7 +21,7 @@ class ExtractInterfaceProcessor extends AbstractClassProcessor {
 	override doTransform(MutableClassDeclaration cls, extension TransformationContext context) {
 		findInterface(cls.qualifiedInterfaceName) => [ iface |
 			cls.declaredMethods.filter [
-				visibility == Visibility::PUBLIC
+				visibility == Visibility.PUBLIC
 				static == false
 			].forEach [ method |
 				iface.addMethod(method.simpleName) [ extracted |

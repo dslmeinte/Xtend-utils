@@ -12,14 +12,14 @@ import org.eclipse.xtend.lib.macro.declaration.MutableFieldDeclaration
 import org.eclipse.xtend.lib.macro.declaration.Visibility
 
 @Active(typeof(ParametrizedInjectionProcessor))
-@Target(ElementType::TYPE)
+@Target(ElementType.TYPE)
 annotation ParametrizedInjected {}
 
 @Active(typeof(ClassParameterChecker))
-@Target(ElementType::FIELD)
+@Target(ElementType.FIELD)
 annotation ClassParameter {}
 
-@Target(ElementType::METHOD)
+@Target(ElementType.METHOD)
 annotation Initialisation {}
 
 class ParametrizedInjectionProcessor extends AbstractClassProcessor {
@@ -56,7 +56,7 @@ class ParametrizedInjectionProcessor extends AbstractClassProcessor {
 		// TODO  make the fields final (produces an error in source now)
 		//	classParameters.forEach[final = true]
 
-		realInitialisations.forEach[visibility = Visibility::PROTECTED]
+		realInitialisations.forEach[visibility = Visibility.PROTECTED]
 
 		if( declaredFields.filter[annotations.exists[ annotationTypeDeclaration.qualifiedName == 'com.google.inject.Inject' ]].empty ) {
 			addWarning('''class «simpleName» has no @Inject-ed fields: you could use @Data & @Property instead of @ParametrizedInjected & @ClassParameter''')

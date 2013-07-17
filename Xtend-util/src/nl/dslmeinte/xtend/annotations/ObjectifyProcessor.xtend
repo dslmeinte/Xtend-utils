@@ -10,7 +10,7 @@ import org.eclipse.xtend.lib.macro.declaration.MutableClassDeclaration
 import org.eclipse.xtend.lib.macro.declaration.Visibility
 
 @Active(typeof(ObjectifyProcessor))
-@Target(ElementType::TYPE)
+@Target(ElementType.TYPE)
 annotation ObjectifyEntity {}
 
 class ObjectifyProcessor extends AbstractClassProcessor {
@@ -21,7 +21,7 @@ class ObjectifyProcessor extends AbstractClassProcessor {
 		addAnnotation("java.lang.SuppressWarnings".newTypeReference.type).set("value", "serial")
 		implementedInterfaces += typeof(Serializable).newTypeReference	// FIXME  doesn't work...
 
-		declaredFields.forEach[ f | f.visibility = Visibility::PUBLIC ]
+		declaredFields.forEach[ f | f.visibility = Visibility.PUBLIC ]
 	}
 	
 }
