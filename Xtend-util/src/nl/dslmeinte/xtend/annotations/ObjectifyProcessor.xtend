@@ -19,7 +19,7 @@ class ObjectifyProcessor extends AbstractClassProcessor {
 		addAnnotation("com.googlecode.objectify.annotation.Entity".newTypeReference.type)
 		addAnnotation("com.googlecode.objectify.annotation.Cache".newTypeReference.type)
 		addAnnotation("java.lang.SuppressWarnings".newTypeReference.type).set("value", "serial")
-		implementedInterfaces += typeof(Serializable).newTypeReference	// FIXME  doesn't work...
+		implementedInterfaces = #[ typeof(Serializable).newTypeReference ]
 
 		declaredFields.forEach[ f | f.visibility = Visibility.PUBLIC ]
 	}
