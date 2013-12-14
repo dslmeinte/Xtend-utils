@@ -3,9 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Xtend-util
 Bundle-SymbolicName: Xtend-util
 Bundle-Version: 1.0.0.qualifier
-Require-Bundle: org.eclipse.xtend.lib,
+Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.5.0",
  com.google.guava,
- org.eclipse.xtext.xbase.lib
+ org.eclipse.xtext.xbase.lib;bundle-version="2.5.0"
 Bundle-Vendor: DSLConsultancy.com
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.oehme.xtend.contrib.base,

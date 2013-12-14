@@ -26,7 +26,7 @@ class ResourcesUtil {
 			mainThrowable = t
 			throw t
 		} finally {
-			if (mainThrowable == null) {
+			if (mainThrowable === null) {
 				resource.close
 			} else {
 				try {

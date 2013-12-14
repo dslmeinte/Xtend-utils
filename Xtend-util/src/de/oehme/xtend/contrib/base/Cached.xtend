@@ -91,9 +91,9 @@ class ParameterlessMethodMemoizer extends MethodMemoizer {
 	}
 
 	override protected cacheCall(extension CompilationContext context) '''
-		if («cacheFieldName» == null) {
+		if («cacheFieldName» === null) {
 			synchronized(«lock») {
-				if («cacheFieldName» == null) {
+				if («cacheFieldName» === null) {
 					«cacheFieldName» = «initMethodName»();
 				}
 			}
@@ -229,7 +229,7 @@ class CacheKey {
 
 	override equals(Object obj) {
 		if (obj instanceof CacheKey) {
-			Arrays.equals(parameters, (obj as CacheKey).parameters)
+			Arrays.equals(parameters, obj.parameters)
 		}
 		false
 	}
