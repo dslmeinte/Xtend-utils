@@ -16,9 +16,11 @@ annotation ObjectifyEntity {}
 class ObjectifyProcessor extends AbstractClassProcessor {
 
 	override doTransform(MutableClassDeclaration it, extension TransformationContext context) {
-		addAnnotation("com.googlecode.objectify.annotation.Entity".newTypeReference.type)
-		addAnnotation("com.googlecode.objectify.annotation.Cache".newTypeReference.type)
-		addAnnotation("java.lang.SuppressWarnings".newTypeReference.type).set("value", "serial")
+		addAnnotation("com.googlecode.objectify.annotation.Entity".newAnnotationReference)
+		addAnnotation("com.googlecode.objectify.annotation.Cache".newAnnotationReference)
+		addAnnotation("java.lang.SuppressWarnings".newAnnotationReference[
+			setStringValue("value", "serial")
+		])
 		implementedInterfaces = #[ typeof(Serializable).newTypeReference ]
 
 		declaredFields.forEach[ f | f.visibility = Visibility.PUBLIC ]
