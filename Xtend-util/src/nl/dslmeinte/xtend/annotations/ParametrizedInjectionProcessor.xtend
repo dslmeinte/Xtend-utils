@@ -11,10 +11,16 @@ import org.eclipse.xtend.lib.macro.declaration.MutableClassDeclaration
 import org.eclipse.xtend.lib.macro.declaration.MutableFieldDeclaration
 import org.eclipse.xtend.lib.macro.declaration.Visibility
 
+/**
+ * TODO  JavaDoc
+ */
 @Active(typeof(ParametrizedInjectionProcessor))
 @Target(ElementType.TYPE)
 annotation ParametrizedInjected {}
 
+/**
+ * TODO  JavaDoc
+ */
 @Active(typeof(ClassParameterChecker))
 @Target(ElementType.FIELD)
 annotation ClassParameter {}

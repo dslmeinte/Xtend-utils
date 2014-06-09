@@ -9,6 +9,9 @@ import org.eclipse.xtend.lib.macro.TransformationContext
 import org.eclipse.xtend.lib.macro.declaration.MutableClassDeclaration
 import org.eclipse.xtend.lib.macro.declaration.Visibility
 
+/**
+ * TODO  JavaDoc
+ */
 @Active(typeof(ObjectifyProcessor))
 @Target(ElementType.TYPE)
 annotation ObjectifyEntity {}
@@ -25,5 +28,5 @@ class ObjectifyProcessor extends AbstractClassProcessor {
 
 		declaredFields.forEach[ f | f.visibility = Visibility.PUBLIC ]
 	}
-	
+
 }
